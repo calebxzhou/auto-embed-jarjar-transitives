@@ -15,8 +15,8 @@ repositories {
 gradlePlugin {
     plugins {
         create("autoEmbedJarJarTransitives") {
-            id = "com.calebxzhou.auto-embed-jarjar-transitives"
-            implementationClass = "com.calebxzhou.gradle.autoembed.AutoEmbedJarJarTransitivesPlugin"
+            id = "auto-embed-jarjar-transitives"
+            implementationClass = "calebxzhou.gradle.plugins.AutoEmbedJarJarTransitivesPlugin"
         }
     }
 }
