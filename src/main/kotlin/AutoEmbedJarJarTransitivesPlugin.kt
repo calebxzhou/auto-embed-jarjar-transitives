@@ -40,7 +40,7 @@ open class AutoEmbedJarJarTransitivesExtension @Inject constructor(
 	private fun includeInternal(notation: String) {
 		val coordinateKey = notation.split(":").take(2).joinToString(":").ifBlank { notation }
 		if (!visitedNotations.add(notation)) {
-			project.logger.info("$coordinateKey 有了")
+			project.logger.info("⚪ $coordinateKey ")
 			return
 		}
 
@@ -51,18 +51,18 @@ open class AutoEmbedJarJarTransitivesExtension @Inject constructor(
 			}
 
 		if (shouldSkip) {
-			project.logger.info("$coordinateKey 不要")
+			project.logger.info("- $coordinateKey ")
 			return
 		}
 
 		addJarJarDependency(notation)
-		project.logger.info("$coordinateKey 要")
+		project.logger.info("+ $coordinateKey ")
 
 		val transitiveArtifacts = resolveArtifacts(notation, transitive = true)
 		transitiveArtifacts.forEach { artifact ->
 			val artifactKey = artifact.moduleKey()
 			if (artifactKey in jarJarExcludeCoords) {
-				project.logger.info("$artifactKey 不要")
+				project.logger.info("- $artifactKey")
 				return@forEach
 			}
 			val classifierSuffix = artifact.classifier?.let { ":$it" } ?: ""
