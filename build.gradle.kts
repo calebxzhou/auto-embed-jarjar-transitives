@@ -22,7 +22,7 @@ gradlePlugin {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
 // Optional but recommended: Better artifact name
 tasks.jar {
